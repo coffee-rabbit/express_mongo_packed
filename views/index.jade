@@ -1,4 +1,22 @@
 extends ./layout.jade
 
 block content
-  h1 Server is running
+  div(ng-controller='todoController as todoCtrl')
+   table
+    thead
+      tr
+        th Todos
+        th Completed
+        th
+          input(type= 'button' value='Delete Completed' ng-click='todoCtrl.deleteCompleted()')
+    tbody(ng-cloak='ng-cloak')
+      tr(ng-repeat='todo in todoCtrl.todos')
+        td {{todo.task}}
+        td
+          input(type='checkbox' ng-model='todo.completed' ng-click='todoCtrl.updateTodo(todo)')
+        td
+          input(type='button' value='delete' ng-click='todoCtrl.deleteTodo(todo._id)')
+   div
+     h3 Create a new Todo
+     input(type='text' ng-model='task')
+     input(type='button' value='Submit' ng-click='todoCtrl.addTodo(task); task=""')

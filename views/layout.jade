@@ -1,7 +1,7 @@
 html
   head
     title #{title}
-  body
+    script(src='build/bundle.js')
+  body(ng-app='todoApp')
     block content
 
-    script(src='build/bundle.js')
